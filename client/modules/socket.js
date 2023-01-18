@@ -5,23 +5,21 @@ export class Socket {
         this.socket = io();
     }
 
-    onSetUsername = handler => {
-        this.socket.on('set username', handler)
+    onHandler = eventName => handler => {
+        this.socket.on(eventName, handler);
     }
 
-    onUserJoined = handler => {
-        this.socket.on('user joined', handler)
-    }
-
-    onUserLeft = handler => {
-        this.socket.on('user left', handler)
-    }
-
-    onChatMessage = handler => {
-        this.socket.on('chat message', handler)
-    }
+    onSetUsername = this.onHandler('set username');
+    onUserJoined = this.onHandler('user joined');
+    onUserLeft = this.onHandler('user left');
+    onChatMessage = this.onHandler('chat message');
+    onUserTyping = this.onHandler('user typing');
 
     emitChatMessage = message => {
         this.socket.emit('chat message', message)
-    }    
+    } 
+    
+    emitUserTyping = () => {
+        this.socket.emit('user typing')
+    }
 }

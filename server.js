@@ -34,4 +34,8 @@ io.on('connection', socket => {
     })
   })
 
+  socket.on('user typing', () => {
+    socket.broadcast.emit('user typing', socket.username);
+  });
+
 });

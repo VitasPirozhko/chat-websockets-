@@ -12,4 +12,10 @@ export class MessageForm {
         })
     }
 
+    onKeyPress(handler) {
+        this.node.addEventListener('keypress', () => {
+            handler();
+        })
+    }
+
 };
