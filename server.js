@@ -20,7 +20,9 @@ server.listen(port, () => {
 
 io.on('connection', socket => {
   socket.username = Moniker.choose();
+
   socket.emit('set username', socket.username);
+
   socket.broadcast.emit('user joined', socket.username);
 
   socket.on('disconnect',  () => {
@@ -28,10 +30,15 @@ io.on('connection', socket => {
   })
 
   socket.on('chat message', message => {
-    io.emit('chat message', {
-      name: socket.username,
-      message,
-    })
+    socket.broadcast.emit('chat message', {
+        name: socket.username,
+        message,
+    });
+
+    socket.emit('chat message', {
+        name: 'you',
+        message,
+    });
   })
 
   socket.on('user typing', () => {
