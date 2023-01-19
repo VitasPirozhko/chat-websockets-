@@ -3,6 +3,7 @@ import { Messages } from "./modules/messages.js";
 import { Socket } from "./modules/socket.js";
 import { MessageForm } from "./modules/message_form.js";
 import { TypingStatus } from "./modules/typing_status.js";
+import { Label } from "./modules/label.js";
 
 document.addEventListener('DOMContentLoaded', () => {
     const socket = new Socket()
@@ -10,9 +11,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const messages = new Messages('#messages');
     const messageForm = new MessageForm('#messageForm');
     const typingStatus = new TypingStatus('#typingStatus');
+    const label = new Label('#userIco');
 
     socket.onSetUsername((name) =>{
         username.render(name);
+        label.render(name[0]);
         messages.renderSysterMessage(`${name} assigned to you.`);
     });
 
