@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     socket.onChatMessage(({name, message}) => {
         messages.renderMessage(name, message);
-        typingStatus.clear();
+        typingStatus.removeUser(name);
     })
 
     messageForm.onSubmit(value => {
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     socket.onUserTyping(username => {
-        typingStatus.renderUserTyping(username);
+        typingStatus.addUser(username);
     })
 
 });
