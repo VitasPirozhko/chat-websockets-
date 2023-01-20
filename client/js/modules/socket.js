@@ -9,7 +9,7 @@ export class Socket {
         this.socket.on(eventName, handler);
     }
 
-    onSetUsername = this.onHandler('set username');
+    onRedirectToChat = this.onHandler('redirect to chat');
     onUserJoined = this.onHandler('user joined');
     onUserLeft = this.onHandler('user left');
     onChatMessage = this.onHandler('chat message');
@@ -22,4 +22,12 @@ export class Socket {
     emitUserTyping = () => {
         this.socket.emit('user typing')
     }
+
+    emitUserName = name => {
+        this.socket.emit('set username', name)
+    }
+
+    emitGetUserName = () => {
+        this.socket.emit('get username');
+    };
 }

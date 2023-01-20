@@ -6,6 +6,9 @@ import { TypingStatus } from "./modules/typing_status.js";
 import { Label } from "./modules/label.js";
 
 document.addEventListener('DOMContentLoaded', () => {
+    const name = localStorage.getItem('chatName');
+    if (!name) window.location.href = '/';
+
     const socket = new Socket()
     const username = new Usename('#username');
     const messages = new Messages('#messages');
@@ -13,11 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const typingStatus = new TypingStatus('#typingStatus');
     const label = new Label('#userIco');
 
-    socket.onSetUsername((name) =>{
-        username.render(name);
-        label.render(name[0]);
-        messages.renderSysterMessage(`${name} assigned to you.`);
-    });
+    socket.emitUserName(name);
+    username.render(name);
+    label.render(name[0]);
+    messages.renderSysterMessage(`${name} assigned to you.`);
 
     socket.onUserJoined((name) => { 
         messages.renderSysterMessage(`${name} joined.`);
@@ -44,4 +46,5 @@ document.addEventListener('DOMContentLoaded', () => {
         typingStatus.addUser(username);
     })
 
+    username.addEventLogOut();
 });

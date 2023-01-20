@@ -1,7 +1,6 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
-const Moniker = require('moniker');
 
 const app = express();
 const server = http.Server(app);
@@ -9,6 +8,10 @@ const io = socketIO(server);
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/client/login.html');
+});
+
+app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/client/index.html');
 });
 
@@ -19,11 +22,10 @@ server.listen(port, () => {
 });
 
 io.on('connection', socket => {
-  socket.username = Moniker.choose();
-
-  socket.emit('set username', socket.username);
-
-  socket.broadcast.emit('user joined', socket.username);
+  socket.on('set username', (username) => {
+    socket.username = username;
+    socket.broadcast.emit('user joined', username);
+  });
 
   socket.on('disconnect',  () => {
     socket.broadcast.emit('user left', socket.username);
