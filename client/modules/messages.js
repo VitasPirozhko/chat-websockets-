@@ -1,12 +1,14 @@
+import { getMessageTime } from '../helpers/index.js'
+
 export class Messages {
     constructor(selector) {
         this.node = document.querySelector(selector);
     };
 
-    renderMessage = (username, message) => {
+    renderMessage = (username, message, time) => {
         this.node.innerHTML += `<div class="message ${username === 'you' ? 'to_right' : ''}">
             <span>
-                [${username}] ${message}<div class="time">18:50</div>
+                [${username}] ${message}${time ? `<div class="time">${getMessageTime(time)}</div>` : ''}
             </span>
         </div>`;
 

@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         messages.renderSysterMessage(`${name} left.`);
     })
 
-    socket.onChatMessage(({name, message}) => {
-        messages.renderMessage(name, message);
+    socket.onChatMessage(({name, message, time}) => {
+        messages.renderMessage(name, message, time);
         typingStatus.removeUser(name);
     })
 

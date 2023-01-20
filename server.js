@@ -32,11 +32,13 @@ io.on('connection', socket => {
   socket.on('chat message', message => {
     socket.broadcast.emit('chat message', {
         name: socket.username,
+        time: new Date(),
         message,
     });
 
     socket.emit('chat message', {
         name: 'you',
+        time: new Date(),
         message,
     });
   })
