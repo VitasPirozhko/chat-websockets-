@@ -29,7 +29,7 @@ io.on('connection', socket => {
   });
 
   socket.on('disconnect',  () => {
-    socket.broadcast.emit('user left', socket.username);
+    if (socket.username) socket.broadcast.emit('user left', socket.username);
   })
 
   socket.on('chat message', message => {
