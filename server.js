@@ -8,11 +8,11 @@ const io = socketIO(server);
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/client/login.html');
+  res.sendFile(__dirname + '/client/index.html');
 });
 
 app.get('/chat', (req, res) => {
-  res.sendFile(__dirname + '/client/index.html');
+  res.sendFile(__dirname + '/client/chat.html');
 });
 
 app.use(express.static('./client'));

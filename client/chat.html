@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Socket.IO chat</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+<main class="main">
+  <aside>
+    <div class="username"><span class="userIco" id="userIco"></span><span id="username"></span>
+      <svg id="js_leave" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13.7466 20.6518L17.7862 20.6518C19.3947 20.6518 20.6998 19.2935 20.6998 17.6307L20.6998 6.36931C20.6998 4.70149 19.3899 3.34825 17.7862 3.34825L13.6503 3.34824C13.2891 3.34824 13.0001 3.04863 13.0001 2.67412C13.0001 2.29961 13.2891 2 13.6503 2L17.7862 2.00001C20.1123 2.00001 22.0001 3.96245 22.0001 6.36931L22.0001 17.6307C22.0001 20.0426 20.1075 22 17.7862 22L13.7466 22C13.3854 22 13.0964 21.7004 13.0964 21.3259C13.0964 20.9514 13.3902 20.6518 13.7466 20.6518Z" fill="currentColor"/>
+        <path d="M2.21609 12.4183L6.82219 17.0307C7.10672 17.3156 7.56334 17.3159 7.84826 17.0314C8.13317 16.7468 8.13349 16.2902 7.84896 16.0053L4.47759 12.6293L14.7762 12.7106C15.1791 12.7109 15.5016 12.3888 15.5019 11.9859C15.5022 11.583 15.1801 11.2604 14.7771 11.2601L4.47858 11.1789L7.85455 7.80751C8.13947 7.52298 8.13978 7.06636 7.85526 6.78144C7.71568 6.64167 7.5277 6.56634 7.34505 6.56621C7.1624 6.56609 6.97433 6.6358 6.83456 6.78075L2.22217 11.3868C1.93188 11.6767 1.93156 12.1387 2.21609 12.4183Z" fill="currentColor"/>
+      </svg>
+    </div>
+
+    <pre class="scrollable" id="rooms"></pre>
+  </aside>
+
+  <article>
+    <div class="scrollable" id="messages"></div>
+
+    <pre class="typing" id="typingStatus"></pre>
+
+    <form class="form" id="messageForm">
+      <input type="text" placeholder="your message here" autocomplete="off">
+      <button type="submit">send</button>
+    </form>
+  </article>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script type="module" src="/js/main.js"></script>
+</body>
+</html>
