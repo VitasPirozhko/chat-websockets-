@@ -15,7 +15,7 @@ app.get('/chat', (req, res) => {
   res.sendFile(__dirname + '/client/chat.html');
 });
 
-app.use(express.static('./client'));
+app.use(express.static('./server/client'));
 
 server.listen(port, () => {
   console.log('listening on:' + port);
