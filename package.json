@@ -7,7 +7,7 @@
     "socket.io": "2.2.0"
   },
   "scripts": {
-    "start": "nodemon server/server.js"
+    "start": "nodemon server/index.js"
   },
   "devDependencies": {
     "nodemon": "^1.18.11"

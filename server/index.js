@@ -1,6 +1,7 @@
 const express = require('express');
 const http = require('http');
 const socketIO = require('socket.io');
+const path = require('path');
 
 const app = express();
 const server = http.Server(app);
@@ -8,14 +9,14 @@ const io = socketIO(server);
 const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/client/index.html');
+  res.sendFile('index.html', { root: path.join(__dirname, '../client') });
 });
 
 app.get('/chat', (req, res) => {
-  res.sendFile(__dirname + '/client/chat.html');
+  res.sendFile('chat.html', { root: path.join(__dirname, '../client') });
 });
 
-app.use(express.static('./server/client'));
+app.use(express.static('./client'));
 
 server.listen(port, () => {
   console.log('listening on:' + port);
